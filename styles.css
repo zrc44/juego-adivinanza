@@ -1,0 +1,165 @@
+/* ============================================================
+   styles.css — Todo lo que hace que el juego se vea lindo.
+   Cada regla empieza con un "selector" (.algo) y adentro van
+   las propiedades (color, tamaño, etc.).
+   ============================================================ */
+
+/* --- Regla base: sin espacios raros ni bordes invisibles --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- "Variables": colores guardados con nombre para reusar --- */
+:root {
+  --color-fondo: #0f172a;
+  --color-tarjeta: #ffffff;
+  --color-texto: #1e293b;
+  --color-principal: #6366f1;
+  --color-principal-oscuro: #4f46e5;
+  --color-bajo: #2563eb;     /* azul    */
+  --color-alto: #ea580c;     /* naranja */
+  --color-acierto: #16a34a;  /* verde   */
+  --color-aviso: #dc2626;    /* rojo    */
+  --radio: 16px;
+}
+
+/* --- El fondo de toda la página --- */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--color-texto);
+  background: radial-gradient(circle at top, #1e293b, var(--color-fondo));
+}
+
+/* --- La tarjeta blanca del juego --- */
+.juego {
+  width: 100%;
+  max-width: 460px;
+  background: var(--color-tarjeta);
+  border-radius: var(--radio);
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.juego__titulo {
+  font-size: 1.9rem;
+  margin-bottom: 12px;
+}
+
+.juego__ayuda {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+/* --- La fila con el campo de texto y el botón --- */
+.juego__form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* --- El campo donde escribís el número --- */
+.juego__entrada {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.juego__entrada:focus {
+  border-color: var(--color-principal);
+}
+
+/* --- Los botones --- */
+.boton {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 20px;
+  transition: transform 0.08s, background 0.2s;
+}
+
+.boton:active {
+  transform: scale(0.97);
+}
+
+.boton--principal {
+  color: #fff;
+  background: var(--color-principal);
+}
+
+.boton--principal:hover {
+  background: var(--color-principal-oscuro);
+}
+
+.boton--secundario {
+  width: 100%;
+  color: var(--color-principal-oscuro);
+  background: #eef2ff;
+}
+
+.boton--secundario:hover {
+  background: #e0e7ff;
+}
+
+/* --- El cartel de pistas (alto/bajo/correcto) --- */
+.juego__feedback {
+  min-height: 52px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Colores según el resultado. Los agrega JavaScript. */
+.juego__feedback.es-bajo    { background: #dbeafe; color: var(--color-bajo); }
+.juego__feedback.es-alto    { background: #ffedd5; color: var(--color-alto); }
+.juego__feedback.es-acierto { background: #dcfce7; color: var(--color-acierto); }
+.juego__feedback.es-error   { background: #fee2e2; color: var(--color-aviso); }
+
+/* --- El marcador de intentos --- */
+.juego__panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+/* --- Ayuda para lectores de pantalla (texto oculto a la vista) --- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* --- Pequeño salto cuando ganás --- */
+@keyframes salto {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+.juego.ganado {
+  animation: salto 0.5s ease;
+}

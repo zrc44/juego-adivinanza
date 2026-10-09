@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adivina el Número</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Toda la pantalla es una sola "tarjeta" con el juego adentro. -->
+  <main class="juego" id="juego">
+
+    <h1 class="juego__titulo">Adivina el Número</h1>
+
+    <p class="juego__ayuda">
+      Pensé un número entre <strong>1</strong> y <strong>100</strong>.
+      Escribí tu intento y presioná el botón.
+      Te voy a decir si el número es más alto o más bajo.
+    </p>
+
+    <!-- El "form" agrupa el campo de texto y el botón. -->
+    <form class="juego__form" id="form">
+      <label class="visually-hidden" for="entrada">Tu número</label>
+      <input
+        id="entrada"
+        class="juego__entrada"
+        type="number"
+        min="1"
+        max="100"
+        inputmode="numeric"
+        placeholder="1 al 100"
+        autocomplete="off"
+        required
+      />
+      <button type="submit" class="boton boton--principal" id="botonAdivinar">
+        Adivinar
+      </button>
+    </form>
+
+    <!-- Acá mostramos las pistas: "muy alto", "muy bajo", "¡correcto!". -->
+    <p class="juego__feedback" id="feedback" aria-live="polite">
+      Esperando tu primer intento…
+    </p>
+
+    <!-- Marcador: cuántos intentos y cuál fue la mejor partida. -->
+    <div class="juego__panel">
+      <span class="juego__stat">
+        Intentos: <strong id="intentos">0</strong>
+      </span>
+      <span class="juego__stat">
+        Mejor partida: <strong id="mejor">—</strong>
+      </span>
+    </div>
+
+    <button type="button" class="boton boton--secundario" id="botonReiniciar">
+      Jugar de nuevo
+    </button>
+
+  </main>
+
+  <!-- El script va al final para que el HTML ya exista cuando corra. -->
+  <script src="game.js"></script>
+</body>
+</html>
