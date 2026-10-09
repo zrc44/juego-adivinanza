@@ -15,7 +15,7 @@ const tarjeta = document.getElementById("juego");
 
 /* --- 2. Datos del juego --- */
 const MINIMO = 1;
-const MAXIMO = 100;
+const MAXIMO = 1000;
 
 let secreto;      // el número que hay que adivinar
 let intentos;     // cuántos intentos llevamos en esta partida
