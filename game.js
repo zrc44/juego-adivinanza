@@ -16,10 +16,11 @@ const tarjeta = document.getElementById("juego");
 /* --- 2. Datos del juego --- */
 const MINIMO = 1;
 const MAXIMO = 1000;
+const CLAVE_MEJOR = "juego-adivinanza/mejor"; // dónde guardamos el récord
 
 let secreto;      // el número que hay que adivinar
 let intentos;     // cuántos intentos llevamos en esta partida
-let mejor = null; // la mejor partida (menos intentos) de esta sesión
+let mejor = null; // la mejor partida (menos intentos); null = todavía no hay récord
 let terminado;    // true cuando ya se acertó
 
 /* --- 2b. El rango vive SOLO acá: se lo pasamos al HTML --- */
@@ -29,6 +30,28 @@ document.getElementById("rangoMax").textContent = MAXIMO;
 entrada.min = MINIMO;
 entrada.max = MAXIMO;
 entrada.placeholder = `${MINIMO} al ${MAXIMO}`;
+
+/* --- 2c. El récord vive en el navegador (localStorage) --- */
+// Así la mejor partida sobrevive aunque cierres la pestaña.
+function cargarMejor() {
+  try {
+    const guardado = Number(localStorage.getItem(CLAVE_MEJOR));
+    return Number.isInteger(guardado) && guardado > 0 ? guardado : null;
+  } catch (e) {
+    return null; // si el navegador bloquea el almacenamiento, seguimos sin récord
+  }
+}
+
+function guardarMejor() {
+  try {
+    localStorage.setItem(CLAVE_MEJOR, String(mejor));
+  } catch (e) {
+    // sin almacenamiento disponible: el récord dura solo esta sesión
+  }
+}
+
+mejor = cargarMejor();
+textoMejor.textContent = mejor === null ? "—" : mejor;
 
 /* --- 3. Función: arranca una partida nueva --- */
 function nuevaPartida() {
@@ -96,6 +119,7 @@ function ganar() {
   if (mejor === null || intentos < mejor) {
     mejor = intentos;
     textoMejor.textContent = mejor;
+    guardarMejor(); // y la dejamos guardada para la próxima visita
   }
 
   // Pequeña animación de la tarjeta.

@@ -17,7 +17,8 @@ no necesita instalar nada.
    - **Muy bajo 👇** → el número secreto es más grande.
    - **Muy alto 👆** → el número secreto es más chico.
    - **¡Correcto! 🎉** → ¡ganaste!
-4. El marcador cuenta tus **intentos** y guarda tu **mejor partida**.
+4. El marcador cuenta tus **intentos** y guarda tu **mejor partida** (queda
+   guardada en tu navegador, así sobrevive aunque lo cierres).
 5. Apretá **Jugar de nuevo** para empezar otra ronda.
 
 ---
@@ -140,8 +141,14 @@ Abrí los archivos y cambiá algo chiquito. ¡Es la mejor forma de aprender!
   (por ejemplo, `--color-principal` a `#e11d48` para un violeta rosado).
 - **Agregar pistas de "caliente/frío":** si el intento está a menos de 10 del
   secreto, mostrá "¡Caliente! 🔥".
-- **Guardar las mejores partidas:** investigá `localStorage` para que el
-  récord sobreviva aunque cierres el navegador.
+- **Historial de intentos:** guardá en un array los números que ya probaste
+  y mostralos en pantalla.
+
+> 🧠 **Tu récord se guarda con `localStorage`.** Es una pequeña "caja" que el
+> navegador le da a cada página para guardar datos. En `game.js`, la clave
+> `juego-adivinanza/mejor` guarda el menor número de intentos. Si el navegador
+> bloquea el almacenamiento, el juego sigue funcionando: el récord dura solo
+> esa sesión.
 
 ---
 
