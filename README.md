@@ -31,10 +31,19 @@ Estás en Windows con WSL2, así que tenés dos caminos fáciles.
 En la terminal, parado en la carpeta del proyecto, escribí:
 
 ```bash
-explorer.exe index.html
+cmd.exe /c start "" "$(wslpath -w index.html)"
 ```
 
 Se va a abrir el juego en tu navegador de Windows. Listo. 🎉
+
+> **¿Por qué no usar `explorer.exe index.html`?** Cuando lanzás un programa de
+> Windows desde WSL, el "directorio actual" queda como una ruta de red
+> (`\\wsl.localhost\...`). Windows no acepta eso como carpeta actual, así que
+> no encuentra el archivo relativo y falla. `wslpath -w` traduce la ruta a una
+> ruta de Windows absoluta, y con eso sí lo abre.
+>
+> Si preferís explorar la carpeta a mano: `explorer.exe .` te abre el
+> Explorador en el proyecto, y después hacés doble clic en `index.html`.
 
 ### Opción B — Con un "servidor" local (más profesional)
 
