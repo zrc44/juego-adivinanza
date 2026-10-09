@@ -22,6 +22,14 @@ let intentos;     // cuántos intentos llevamos en esta partida
 let mejor = null; // la mejor partida (menos intentos) de esta sesión
 let terminado;    // true cuando ya se acertó
 
+/* --- 2b. El rango vive SOLO acá: se lo pasamos al HTML --- */
+// Así index.html no repite el número; todo sale de MINIMO y MAXIMO.
+document.getElementById("rangoMin").textContent = MINIMO;
+document.getElementById("rangoMax").textContent = MAXIMO;
+entrada.min = MINIMO;
+entrada.max = MAXIMO;
+entrada.placeholder = `${MINIMO} al ${MAXIMO}`;
+
 /* --- 3. Función: arranca una partida nueva --- */
 function nuevaPartida() {
   // Número al azar entre MINIMO y MAXIMO (ambos incluidos).
@@ -49,7 +57,7 @@ function revisarIntento(evento) {
   const numero = Number(entrada.value);
   feedback.className = "juego__feedback";
 
-  // Validación: tiene que ser un entero entre 1 y 100.
+  // Validación: tiene que ser un entero dentro del rango (MINIMO..MAXIMO).
   if (!Number.isInteger(numero) || numero < MINIMO || numero > MAXIMO) {
     feedback.textContent = `Escribí un número entero entre ${MINIMO} y ${MAXIMO}.`;
     feedback.classList.add("es-error");

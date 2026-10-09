@@ -1,7 +1,7 @@
 # 🎲 Adivina el Número
 
 Un juego sencillo que corre en el navegador. La compu "piensa" un número
-entre **1 y 100**, y vos tenés que descubrirlo. Después de cada intento el
+entre **1 y 1000**, y vos tenés que descubrirlo. Después de cada intento el
 juego te dice si el número secreto es **más alto** o **más bajo**.
 
 Este proyecto es ideal para aprender: es chico, se ve todo de una sola vez y
@@ -11,7 +11,7 @@ no necesita instalar nada.
 
 ## 🕹️ Cómo jugar
 
-1. Escribí un número del 1 al 100 en el casillero.
+1. Escribí un número del 1 al 1000 en el casillero.
 2. Apretá **Adivinar** (o la tecla Enter).
 3. Leé la pista:
    - **Muy bajo 👇** → el número secreto es más grande.
@@ -83,12 +83,12 @@ El navegador es como un teatro:
 ### El corazón de `game.js`
 
 ```js
-// Elige un número al azar entre 1 y 100
+// Elige un número al azar entre 1 y 1000
 secreto = Math.floor(Math.random() * (MAXIMO - MINIMO + 1)) + MINIMO;
 ```
 
 - `Math.random()` da un número decimal al azar entre 0 y 1 (ej: `0.42`).
-- Lo multiplicamos por 100 para que quede entre 0 y 100.
+- Lo multiplicamos por 1000 para que quede entre 0 y 1000.
 - `Math.floor()` corta los decimales (redondea para abajo).
 - Sumamos `MINIMO` para que nunca dé 0.
 
@@ -134,7 +134,8 @@ adoptar. Este juego se armó así:
 
 Abrí los archivos y cambiá algo chiquito. ¡Es la mejor forma de aprender!
 
-- **Cambiar el rango:** en `game.js`, probá `MAXIMO = 1000`.
+- **Cambiar el rango:** tocá solo `MAXIMO` en `game.js` (por ejemplo `MAXIMO = 50`).
+  El HTML se ajusta solo, porque el rango vive en un único lugar.
 - **Cambiar los colores:** en `styles.css`, cambiá los valores de `:root`
   (por ejemplo, `--color-principal` a `#e11d48` para un violeta rosado).
 - **Agregar pistas de "caliente/frío":** si el intento está a menos de 10 del
