@@ -5,7 +5,7 @@ entre **1 y 1000**, y vos tenés que descubrirlo. Después de cada intento el
 juego te dice si el número secreto es **más alto** o **más bajo**.
 
 Este proyecto es ideal para aprender: es chico, se ve todo de una sola vez y
-no necesita instalar nada.
+no necesita instalar nada para jugar (los tests usan Node, sin dependencias).
 
 ---
 
@@ -110,9 +110,34 @@ juego-adivinanza/
 ├── index.html    → estructura del juego
 ├── styles.css    → estilos y colores
 ├── game.js       → lógica del juego
+├── tests/        → pruebas automáticas (Node)
+├── package.json  → comandos del proyecto (npm test)
 ├── README.md     → esta explicación
 └── .gitignore    → archivos que git debe ignorar
 ```
+
+---
+
+## 🧪 Tests (pruebas automáticas)
+
+El proyecto trae pruebas que revisan que el juego funcione **sin abrirlo a
+mano**. No instalan nada: usan solo Node.js.
+
+```bash
+npm test
+```
+
+Corren dos archivos dentro de `tests/`:
+
+- **`tests/verify-game.mjs`** — la lógica básica: el rango (1–1000), que el
+  número secreto caiga siempre dentro y que los intentos fuera de rango se
+  rechacen.
+- **`tests/verify-localstorage.mjs`** — el récord: que se guarde, se cargue,
+  que una partida peor no lo pise y que un navegador sin almacenamiento no lo
+  rompa.
+
+Cada línea dice `PASS` o `FAIL`, y al final el total. Si algo falla, el comando
+termina con error — justo lo que querés que pase cuando rompés algo.
 
 ---
 

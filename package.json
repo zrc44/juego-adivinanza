@@ -1,0 +1,10 @@
+{
+  "name": "juego-adivinanza",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Juego Adivina el Número (HTML/CSS/JS) con pruebas automáticas en Node",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/verify-game.mjs && node tests/verify-localstorage.mjs"
+  }
+}
